@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+        }
+        input[type=text] {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            margin: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .heart {
+            color: red;
+            font-size: 48px;
+            line-height: 1;
+            margin: 20px;
+        }
+        #question1, #question2, #question3 {
+            font-size: 24px; /* 调整字体大小为 24px */
+        }
+    </style>
+</head>
+<body>
+<div id="page1" style="display: block;">
+    <h2>Page 1</h2>
+    <img src="imings/333.gif" alt="Image1">
+    <div id="question1">你觉得我和严浩翔谁帅？</div>
+    <input type="text" id="answer1" placeholder="I think you有的时候得承认事实">
+    <button onclick="checkAnswer(1)">Submit</button>
+</div>
+
+<div id="page2" style="display: none;">
+    <h2>Page 2</h2>
+    <img src="imings/xm.jpg" alt="Image2">
+    <div id="question2">这个问题不能犹豫，你是星光灿烂下永远飞不上蓝天的动物？</div>
+    <input type="text" id="answer2" placeholder="prompt:请输入'我是*'">
+    <button onclick="checkAnswer(2)">Submit</button>
+</div>
+
+<div id="page3" style="display: none;">
+    <h2>Page 3</h2>
+    <img src="imings/nz.gif" alt="Image3">
+    <div id="question3">再次碰到我你开心吗？</div>
+    <input type="text" id="answer3" placeholder="知道你不开心,但是可以假装一下">
+    <button onclick="checkAnswer(3)">Submit</button>
+</div>
+
+<div id="page4" style="display: none;">
+    <h2>好久不见哦！！！</h2>
+    <button onclick="redirectToPage()">NEXT</button>
+</div>
+
+<script>
+    function checkAnswer(pageNumber) {
+        let answer = '';
+        let correctAnswer = '';
+
+        switch (pageNumber) {
+            case 1:
+                answer = document.getElementById('answer1').value.trim().toLowerCase();
+                correctAnswer = '你'; // Replace with actual correct answer for page 1
+                break;
+            case 2:
+                answer = document.getElementById('answer2').value.trim().toLowerCase();
+                correctAnswer = '我是猪'; // Replace with actual correct answer for page 2
+                break;
+            case 3:
+                answer = document.getElementById('answer3').value.trim().toLowerCase();
+                correctAnswer = '开心'; // Replace with actual correct answer for page 3
+                break;
+            default:
+                return;
+        }
+
+        if (answer === correctAnswer.toLowerCase()) {
+            document.getElementById('page' + pageNumber).style.display = 'none';
+            if (pageNumber < 4) {
+                document.getElementById('page' + (pageNumber + 1)).style.display = 'block';
+            } else if (pageNumber === 3) {
+                document.getElementById('page4').style.display = 'block';
+            }
+        } else {
+            alert('Incorrect answer. Please try again.');
+        }
+    }
+
+    function redirectToPage() {
+        window.location.href = 'xing.html';
+    }
+</script>
+</body>
+</html>
